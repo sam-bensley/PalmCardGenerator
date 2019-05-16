@@ -1,10 +1,15 @@
 from flask import *
 
-
 #initial setup of flask.
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return "SIMPLE TEST"
+    #if speech has been recieved
+    if request.method == 'POST':
+        #convert speech into pdf and save pdf to the server
+        speech = request.form["speech"]
+        return speech
+    
+    return render_template("index.html")
 
