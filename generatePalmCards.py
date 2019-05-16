@@ -1,3 +1,5 @@
+#Eventually Want to turn this into function that returns a pdf
+
 # Generates Palm Cards from text file in cmd line input
 
 from fpdf import FPDF
