@@ -51,7 +51,8 @@ def convertTextToPDF(text, fileName):
     pdf = FPDF('P', 'mm', 'A4')    
     pdf.add_page()
     pdf.set_margins(LEFT_MARGIN, TOP_MARGIN, RIGHT_MARGIN)
-    pdf.set_font('Arial', 'B', FONT_SIZE)
+    pdf.add_font('new', '', 'fonts/ARIALUNI.TTF', uni=True)
+    pdf.set_font('new', '', FONT_SIZE)
 
     # we want to split text up so that it does not overflow cell
     # Note that this only works for current font
