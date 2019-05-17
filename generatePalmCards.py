@@ -1,5 +1,3 @@
-#Eventually Want to turn this into function that returns a pdf
-
 # Generates Palm Cards from text file in cmd line input
 
 from fpdf import FPDF
@@ -26,7 +24,6 @@ COLUMNS_PER_PAGE = 2
 # PARAMTERS FOR FONT
 FONT_SIZE = 12
 
-
 # split up text into a list of lines which
 # are readable and do not contain half cut
 # off words
@@ -49,16 +46,16 @@ def split(text, maximumCharacters):
     readableList.append(line)
     return readableList
 
-# create pdf object
-pdf = FPDF('P', 'mm', 'A4')    
-pdf.add_page()
-pdf.set_margins(LEFT_MARGIN, TOP_MARGIN, RIGHT_MARGIN)
-pdf.set_font('Arial', 'B', FONT_SIZE)
+def convertTextToPDF(text, fileName):
+    # create pdf object
+    pdf = FPDF('P', 'mm', 'A4')    
+    pdf.add_page()
+    pdf.set_margins(LEFT_MARGIN, TOP_MARGIN, RIGHT_MARGIN)
+    pdf.set_font('Arial', 'B', FONT_SIZE)
 
-with open(sys.argv[1], "r") as f:
     # we want to split text up so that it does not overflow cell
     # Note that this only works for current font
-    stringSplit = split(f.read(), 40)
+    stringSplit = split(text, 40)
 
     linesOnCard = 0
     cardsOnColumn = 0
@@ -88,4 +85,5 @@ with open(sys.argv[1], "r") as f:
         pdf.cell(CELL_WIDTH, CELL_HEIGHT, string, BORDER_FLAG, LN, TEXT_ALIGNMENT)
         linesOnCard += 1
 
-pdf.output('palmCards.pdf', 'F')
+    pdf.output("speeches/"+fileName, 'F')
+
