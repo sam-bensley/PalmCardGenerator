@@ -29,8 +29,15 @@ FONT_SIZE = 12
 # off words
 def split(text, maximumCharacters):
     readableList = []
-    splitText = text.split(" ")
+    splitText = text.replace("\n", "").split(" ")
+
+    while True:
+        try:
+            splitText.remove('\r')
+        except:
+            break
     
+    print(splitText)
     line = ""
     for word in splitText:
         # if adding this word exceeds maxmimumCharacters
